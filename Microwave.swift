@@ -14,7 +14,6 @@ let subTime:Double = 1;
 let pizzaTime:Double = 0.75;
 let soupTime:Double = 1.75;
 var cookTime:Double = 0;
-var quantity:Int = 0;
 var food:String = "";
 
 print("Welcome to your microwave.")
@@ -34,34 +33,35 @@ while (true) {
 // input
 while (true) {
     print("How many \(food)(s) are you heating up (1-3)?: ");
-    quantity = Int(readLine()!)!
-    if (quantity > 3 || quantity < 0) {
+    if let quantity = Int(readLine()!) {
+      if (quantity > 3 || quantity < 0) {
         print("Invalid input. Try again.");
+      } else {
+          // process
+          if (quantity == 1 && food == "sub") {
+            cookTime = subTime * 1;
+          } else if (quantity == 1 && food == "pizza") {
+            cookTime = pizzaTime * 1;
+          } else if (quantity == 1 && food == "soup") {
+            cookTime = soupTime * 1;
+          } else if (quantity == 2 && food == "sub") {
+            cookTime = subTime * 1.5;
+          } else if (quantity == 2 && food == "pizza") {
+            cookTime = pizzaTime * 1.5;
+          } else if (quantity == 2 && food == "soup") {
+            cookTime = soupTime * 1.5;
+          } else if (quantity == 3 && food == "sub") {
+            cookTime = subTime * 2;
+          } else if (quantity == 3 && food == "pizza") {
+            cookTime = pizzaTime * 2;
+          } else if (quantity == 3 && food == "soup") {
+            cookTime = soupTime * 2;
+          }
+          break;
+      }
     } else {
-        break;
+      print("Invalid input. Try again.");
     }
 }
-
-// process
-if (quantity == 1 && food == "sub") {
-  cookTime = subTime * 1;
-} else if (quantity == 1 && food == "pizza") {
-  cookTime = pizzaTime * 1;
-} else if (quantity == 1 && food == "soup") {
-  cookTime = soupTime * 1;
-} else if (quantity == 2 && food == "sub") {
-  cookTime = subTime * 1.5;
-} else if (quantity == 2 && food == "pizza") {
-  cookTime = pizzaTime * 1.5;
-} else if (quantity == 2 && food == "soup") {
-  cookTime = soupTime * 1.5;
-} else if (quantity == 3 && food == "sub") {
-  cookTime = subTime * 2;
-} else if (quantity == 3 && food == "pizza") {
-  cookTime = pizzaTime * 2;
-} else if (quantity == 3 && food == "soup") {
-  cookTime = soupTime * 2;
-}
-
 // output
-print("\nThe total cooking time for \(quantity) \(food)(s) is \(cookTime) minute(s).")
+print("\nThe total cooking time is \(cookTime) minute(s).")
